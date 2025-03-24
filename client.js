@@ -13,5 +13,16 @@ window.TrelloPowerUp.initialize({
         });
       }
     }];
+  },
+  'board-buttons': function(t, options) {
+    return [{
+      text: 'Test Button',
+      callback: function(t) {
+        return t.popup({
+          title: 'Test Button!',
+          url: './index.html'
+        });
+      }
+    }];
   }
 });
