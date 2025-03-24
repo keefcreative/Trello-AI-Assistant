@@ -9,14 +9,6 @@
         "text": "AI Assistant",
         "callback": "openModal"
       }
-    ],
-    "show-settings": {
-      "url": "./settings.html",
-      "height": 200
-    }
-  },
-  "connectors": {},
-  "iframe": {
-    "url": "./index.html"
+    ]
   }
 }
