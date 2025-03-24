@@ -1,0 +1,22 @@
+{
+  "name": "AI Assistant",
+  "description": "A custom AI assistant for design agency workflows.",
+  "author": "Your Agency",
+  "version": "1.0",
+  "capabilities": {
+    "card-buttons": [
+      {
+        "text": "AI Assistant",
+        "callback": "openModal"
+      }
+    ],
+    "show-settings": {
+      "url": "./settings.html",
+      "height": 200
+    }
+  },
+  "connectors": {},
+  "iframe": {
+    "url": "./index.html"
+  }
+}

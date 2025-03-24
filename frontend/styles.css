@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+#modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
