@@ -7,7 +7,7 @@
     "card-buttons": [
       {
         "text": "AI Assistant",
-        "callback": "openModal"
+        "callback": "card-buttons"
       }
     ]
   }

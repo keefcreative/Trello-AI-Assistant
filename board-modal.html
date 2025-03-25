@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Assistant Board Modal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+</head>
+<body>
+  <div id="modal-content">
+    <h2>AI Assistant - Board Tools</h2>
+
+    <label for="board-function-select">Select Board Task:</label>
+    <select id="board-function-select">
+      <option value="boardOverview">Board Overview</option>
+      <option value="projectHealthcheck">Project Healthcheck</option>
+      <option value="resourceAllocation">Resource Allocation</option>
+      <option value="scheduleOptimization">Schedule Optimization</option>
+      <option value="generateBoardReport">Generate Board Report</option>
+    </select>
+
+    <div id="board-output"></div>
+  </div>
+
+  <script src="board-modal.js"></script>
+</body>
+</html>
