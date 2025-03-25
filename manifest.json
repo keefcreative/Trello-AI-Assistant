@@ -1,18 +1,20 @@
 {
   "name": "AI Assistant",
-  "description": "A custom AI assistant for internal use",
-  "author": "Your Agency",
-  "version": "1.0",
+  "description": "Enhanced AI assistant for Trello cards and boards",
+  "author": "DesignWorks Bureau",
+  "version": "1.0.1",
   "capabilities": {
     "card-buttons": [
       {
         "text": "AI Assistant",
-        "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png",
+        "callback": "showCardModal"
       }
     ],
     "board-buttons": [
       {
-        "text": "Board Assistant"
+        "text": "Board Assistant",
+        "callback": "showBoardModal"
       }
     ]
   }

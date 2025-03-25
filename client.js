@@ -1,33 +1,40 @@
 const Promise = window.TrelloPowerUp.Promise;
 
+const modalDefaults = {
+  accentColor: '#0079BF',
+  fullscreen: false,
+  title: 'AI Assistant'
+};
+
+function showCardModal(t) {
+  return t.modal({
+    ...modalDefaults,
+    url: t.signUrl('./index.html'),
+    height: 500
+  });
+}
+
+function showBoardModal(t) {
+  return t.modal({
+    ...modalDefaults,
+    url: t.signUrl('./board.html'),
+    height: 400,
+    title: 'Board-Level Assistant'
+  });
+}
+
 window.TrelloPowerUp.initialize({
-  'card-buttons': function(t, options) {
-    return [{
-      icon: 'https://cdn-icons-png.flaticon.com/512/4712/4712104.png',
-      text: 'AI Assistant',
-      callback: function(t) {
-        return t.modal({
-          url: t.signUrl('./index.html'),
-          accentColor: '#0079BF',
-          height: 400,
-          fullscreen: false,
-          title: 'AI Assistant'
-        });
-      }
-    }];
-  },
-  'board-buttons': function(t, options) {
-    return [{
-      text: 'Board Assistant',
-      callback: function(t) {
-        return t.modal({
-          url: t.signUrl('./board-modal.html'),
-          accentColor: '#0079BF',
-          height: 300,
-          fullscreen: false,
-          title: 'Board-Level Assistant'
-        });
-      }
-    }];
-  }
+  'card-buttons': () => [{
+    icon: 'https://cdn-icons-png.flaticon.com/512/4712/4712104.png',
+    text: 'AI Assistant',
+    callback: showCardModal
+  }],
+  'board-buttons': () => [{
+    icon: 'https://cdn-icons-png.flaticon.com/512/4712/4712104.png',
+    text: 'Board Assistant',
+    callback: showBoardModal
+  }]
+}, {
+  appKey: '6699e21b6e848872c92aa711ce9b6de4',
+  appName: 'AI Assistant'
 });
