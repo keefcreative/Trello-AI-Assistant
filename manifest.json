@@ -3,12 +3,8 @@
   "description": "A custom AI assistant for design agency workflows.",
   "author": "Your Agency",
   "version": "1.0",
-  "capabilities": {
-    "card-buttons": [
-      {
-        "text": "AI Assistant",
-        "callback": "card-buttons"
-      }
-    ]
-  }
+  "capabilities": [
+    "board-buttons",
+    "card-buttons"
+  ]
 }

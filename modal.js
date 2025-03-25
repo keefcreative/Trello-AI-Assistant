@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const task = select.value;
     output.innerHTML = `<p>Running card task: <strong>${task}</strong>...</p>`;
     
-    // Here you would typically add logic to process the selected task
-    // For now, it's just a placeholder
+    // Placeholder for task processing logic
     switch(task) {
       case 'enhanceBrief':
         // Add enhancement logic
