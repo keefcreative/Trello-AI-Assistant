@@ -7,30 +7,36 @@ const modalDefaults = {
 };
 
 function showCardModal(t) {
-  try {
-    return t.modal({
-      ...modalDefaults,
-      url: t.signUrl('./index.html'),
-      height: 500
-    });
-  } catch (error) {
-    console.error('Error opening card modal:', error);
-    return Promise.reject(error);
+  if (!t || typeof t.signUrl !== 'function') {
+    console.error('Invalid Trello Power-Up instance');
+    return Promise.reject(new Error('Invalid Trello instance'));
   }
+
+  return t.modal({
+    ...modalDefaults,
+    url: t.signUrl('./index.html', { optional: true }),
+    height: 500
+  }).catch(err => {
+    console.error('Failed to open card modal:', err);
+    throw err;
+  });
 }
 
 function showBoardModal(t) {
-  try {
-    return t.modal({
-      ...modalDefaults,
-      url: t.signUrl('./board.html'),
-      height: 400,
-      title: 'Board-Level Assistant'
-    });
-  } catch (error) {
-    console.error('Error opening board modal:', error);
-    return Promise.reject(error);
+  if (!t || typeof t.signUrl !== 'function') {
+    console.error('Invalid Trello Power-Up instance');
+    return Promise.reject(new Error('Invalid Trello instance'));
   }
+
+  return t.modal({
+    ...modalDefaults,
+    url: t.signUrl('./board.html', { optional: true }),
+    height: 400,
+    title: 'Board-Level Assistant'
+  }).catch(err => {
+    console.error('Failed to open board modal:', err);
+    throw err;
+  });
 }
 
 window.TrelloPowerUp.initialize({
@@ -49,7 +55,8 @@ window.TrelloPowerUp.initialize({
     }];
   }
 }, {
-  appKey: '6699e21b6e848872c92aa711ce9b6de4', // REPLACE WITH YOUR ACTUAL KEY
+  appKey: '6699e21b6e848872c92aa711ce9b6de4', // Replace with actual key
   appName: 'AI Assistant',
-  initializationTimeout: 45000
+  initializationTimeout: 45000,
+  optionalPermissions: ['iframe']
 });

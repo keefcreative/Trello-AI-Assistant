@@ -4,10 +4,11 @@ class ModalUtils {
         return Promise.reject(new Error('Trello PowerUp instance not properly provided'));
       }
   
-      return t.initialize({
-        'card-buttons': true,
-        'board-buttons': true
-      })
+      return Promise.resolve()
+        .then(() => t.initialize({
+          'card-buttons': true,
+          'board-buttons': true
+        }))
         .then(() => t.getContext())
         .catch(error => {
           console.error('Power-Up initialization failed:', error);
@@ -15,24 +16,38 @@ class ModalUtils {
         });
     }
   
-    static setupModal(t, containerId, initialContent = '') {
+    static setupModal(t, containerId) {
+      if (!t || typeof t.sizeTo !== 'function') {
+        return Promise.reject(new Error('Invalid Trello instance'));
+      }
+  
       return this.initialize(t)
         .then(context => {
           const container = document.getElementById(containerId);
           if (!container) {
             throw new Error(`Container element #${containerId} not found`);
           }
-  
-          container.innerHTML = initialContent;
-          return t.sizeTo(document.body).then(() => context);
+          return t.sizeTo('#content-wrapper').catch(() => t.sizeTo(document.body));
+        })
+        .catch(error => {
+          console.error('Modal setup failed:', error);
+          throw error;
         });
     }
   
     static showError(message) {
-      const errorEl = document.createElement('div');
-      errorEl.className = 'error-message';
-      errorEl.textContent = message;
-      document.body.prepend(errorEl);
-      return errorEl;
+      try {
+        const errorEl = document.createElement('div');
+        errorEl.className = 'error-message';
+        errorEl.textContent = message;
+        
+        const container = document.querySelector('.modal-content') || document.body;
+        container.prepend(errorEl);
+        
+        return errorEl;
+      } catch (err) {
+        console.error('Failed to show error:', err);
+        return null;
+      }
     }
   }
