@@ -6,14 +6,12 @@
   "capabilities": {
     "card-buttons": [
       {
-        "text": "AI Assistant",
-        "callback": "openCardModal"
+        "text": "AI Assistant"
       }
     ],
     "board-buttons": [
       {
-        "text": "Board Assistant",
-        "callback": "openBoardModal"
+        "text": "Board Assistant"
       }
     ]
   }
