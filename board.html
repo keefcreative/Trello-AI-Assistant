@@ -6,6 +6,20 @@
   <title>Board AI Assistant</title>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Global error handling
+    window.addEventListener('error', function(e) {
+      console.error('Global error:', e.error);
+      const errorDisplay = document.getElementById('global-error') || document.createElement('div');
+      errorDisplay.id = 'global-error';
+      errorDisplay.className = 'global-error';
+      errorDisplay.innerHTML = `
+        <strong>Error:</strong> ${e.error.message || 'Unknown error'}
+        <br><small>Check console for details</small>
+      `;
+      document.body.prepend(errorDisplay);
+    });
+  </script>
 </head>
 <body>
   <div class="modal-container">
@@ -22,10 +36,11 @@
     </main>
     
     <footer class="modal-footer">
-      <p class="context-info"></p>
+      <div class="context-info"></div>
+      <div class="powerup-info">v1.0.1</div>
     </footer>
   </div>
-  
+
   <script src="modal-utils.js"></script>
   <script src="board-modal.js"></script>
 </body>

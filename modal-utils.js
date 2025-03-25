@@ -1,45 +1,69 @@
 class ModalUtils {
     static initialize(t) {
-      if (!t || typeof t.initialize !== 'function') {
-        return Promise.reject(new Error('Trello PowerUp instance not properly provided'));
-      }
+      return new Promise((resolve, reject) => {
+        if (!window.TrelloPowerUp) {
+          reject(new Error('Trello PowerUp not loaded'));
+          return;
+        }
   
-      return Promise.resolve()
-        .then(() => t.initialize({
+        if (!t || typeof t.initialize !== 'function') {
+          reject(new Error('Invalid Trello PowerUp instance'));
+          return;
+        }
+  
+        // Initialize with all required capabilities
+        t.initialize({
           'card-buttons': true,
-          'board-buttons': true
-        }))
-        .then(() => t.getContext())
-        .catch(error => {
-          console.error('Power-Up initialization failed:', error);
-          throw error;
-        });
+          'board-buttons': true,
+          'attachment-sections': false,
+          'card-back-section': false
+        })
+          .then(() => t.getContext())
+          .then(context => {
+            // Store context in window for debugging
+            window.trelloContext = context;
+            resolve(context);
+          })
+          .catch(err => {
+            console.error('Power-Up initialization failed:', err);
+            reject(err);
+          });
+      });
     }
   
     static setupModal(t, containerId) {
-      if (!t || typeof t.sizeTo !== 'function') {
-        return Promise.reject(new Error('Invalid Trello instance'));
-      }
-  
-      return this.initialize(t)
-        .then(context => {
-          const container = document.getElementById(containerId);
-          if (!container) {
-            throw new Error(`Container element #${containerId} not found`);
-          }
-          return t.sizeTo('#content-wrapper').catch(() => t.sizeTo(document.body));
-        })
-        .catch(error => {
-          console.error('Modal setup failed:', error);
-          throw error;
-        });
+      return new Promise((resolve, reject) => {
+        this.initialize(t)
+          .then(context => {
+            const container = document.getElementById(containerId);
+            if (!container) {
+              throw new Error(`Container ${containerId} not found`);
+            }
+            
+            // Ensure we have a valid DOM element to size to
+            const sizingElement = container.querySelector('.content-wrapper') || container;
+            return t.sizeTo(sizingElement)
+              .then(() => resolve(context))
+              .catch(sizeErr => {
+                console.warn('SizeTo failed, using fallback:', sizeErr);
+                return t.sizeTo(document.body).then(() => resolve(context));
+              });
+          })
+          .catch(err => {
+            console.error('Modal setup failed:', err);
+            reject(err);
+          });
+      });
     }
   
     static showError(message) {
       try {
         const errorEl = document.createElement('div');
         errorEl.className = 'error-message';
-        errorEl.textContent = message;
+        errorEl.innerHTML = `
+          <strong>Error:</strong> ${message}
+          <br><small>Check console for details</small>
+        `;
         
         const container = document.querySelector('.modal-content') || document.body;
         container.prepend(errorEl);

@@ -1,21 +1,59 @@
 {
-  "name": "AI Assistant",
-  "description": "Enhanced AI assistant for Trello cards and boards",
+  "name": "AI Assistant Power-Up",
+  "description": "Enhanced AI assistant for Trello cards and boards with proper initialization",
   "author": "DesignWorks Bureau",
   "version": "1.0.1",
+  "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png",
+  "hostPermissions": [
+    "https://*/",
+    "https://trello.com/*"
+  ],
+  "supports": {
+    "modern": true,
+    "legacy": false
+  },
   "capabilities": {
     "card-buttons": [
       {
         "text": "AI Assistant",
         "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png",
-        "callback": "showCardModal"
+        "callback": "showCardModal",
+        "conditions": [
+          {
+            "permission": "read"
+          }
+        ]
       }
     ],
     "board-buttons": [
       {
         "text": "Board Assistant",
-        "callback": "showBoardModal"
+        "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png",
+        "callback": "showBoardModal",
+        "conditions": [
+          {
+            "permission": "read"
+          }
+        ]
       }
     ]
+  },
+  "connectors": {
+    "iframe": {
+      "url": "./index.html"
+    }
+  },
+  "requiredPermissions": [
+    "read",
+    "write",
+    "iframe"
+  ],
+  "optionalPermissions": [
+    "notifications"
+  ],
+  "metadata": {
+    "id": "khodgetts@keefcreative.com",
+    "publisher": "DesignWorks Bureau",
+    "support": "khodgetts@keefcreative.com"
   }
 }

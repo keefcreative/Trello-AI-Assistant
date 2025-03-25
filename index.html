@@ -6,6 +6,16 @@
   <title>Card AI Assistant</title>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // Global error handler
+    window.addEventListener('error', function(e) {
+      console.error('Global error:', e.error);
+      const errorDisplay = document.createElement('div');
+      errorDisplay.className = 'global-error';
+      errorDisplay.textContent = 'An error occurred. Please try again.';
+      document.body.prepend(errorDisplay);
+    });
+  </script>
 </head>
 <body>
   <div class="modal-container">
