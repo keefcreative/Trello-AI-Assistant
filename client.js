@@ -7,7 +7,7 @@ window.TrelloPowerUp.initialize({
       text: 'AI Assistant',
       callback: function(t) {
         return t.modal({
-          url: './index.html',
+          url: t.signUrl('./index.html'),
           accentColor: '#0079BF',
           height: 400,
           fullscreen: false,
@@ -21,7 +21,7 @@ window.TrelloPowerUp.initialize({
       text: 'Board Assistant',
       callback: function(t) {
         return t.modal({
-          url: './board-modal.html',
+          url: t.signUrl('./board-modal.html'),
           accentColor: '#0079BF',
           height: 300,
           fullscreen: false,

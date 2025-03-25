@@ -6,7 +6,8 @@
   "capabilities": {
     "card-buttons": [
       {
-        "text": "AI Assistant"
+        "text": "AI Assistant",
+        "icon": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png"
       }
     ],
     "board-buttons": [
