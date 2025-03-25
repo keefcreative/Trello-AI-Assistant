@@ -1,17 +1,20 @@
 {
   "name": "AI Assistant",
-  "details": "A custom AI assistant for design agency workflows",
-  "icon": {
-    "url": "https://cdn-icons-png.flaticon.com/512/4712/4712104.png"
-  },
-  "author": "Your Name",
-  "capabilities": [
-    "card-buttons",
-    "board-buttons"
-  ],
-  "connectors": {
-    "iframe": {
-      "url": "./connector.html"
-    }
+  "description": "A custom AI assistant for internal use",
+  "author": "Your Agency",
+  "version": "1.0",
+  "capabilities": {
+    "card-buttons": [
+      {
+        "text": "AI Assistant",
+        "callback": "openCardModal"
+      }
+    ],
+    "board-buttons": [
+      {
+        "text": "Board Assistant",
+        "callback": "openBoardModal"
+      }
+    ]
   }
 }
