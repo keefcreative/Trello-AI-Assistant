@@ -1,13 +1,10 @@
 const t = TrelloPowerUp.iframe();
 
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize FIRST before any Trello operations
+t.initialize().then(() => {
   t.render(() => {
-    return Promise.all([
-      t.get('board', 'private', 'authToken'),
-      t.sizeTo('#modal-content')
-    ]).then(() => {
-      const output = document.getElementById('modal-content');
-      output.innerHTML += '<p>Card modal initialized with Trello context.</p>';
-    });
+    const output = document.getElementById("modal-content");
+    output.innerHTML += "<p>Modal initialized with Trello context.</p>";
+    return t.sizeTo(document.body); // Auto-resize iframe
   });
 });
