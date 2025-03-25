@@ -1,12 +1,16 @@
 class ModalUtils {
     static initialize(t) {
-      return t.initialize()
-        .then(() => {
-          console.log('Trello Power-Up initialized successfully');
-          return t.getContext();
-        })
+      if (!t || typeof t.initialize !== 'function') {
+        return Promise.reject(new Error('Trello PowerUp instance not properly provided'));
+      }
+  
+      return t.initialize({
+        'card-buttons': true,
+        'board-buttons': true
+      })
+        .then(() => t.getContext())
         .catch(error => {
-          console.error('Initialization failed:', error);
+          console.error('Power-Up initialization failed:', error);
           throw error;
         });
     }
@@ -28,6 +32,7 @@ class ModalUtils {
       const errorEl = document.createElement('div');
       errorEl.className = 'error-message';
       errorEl.textContent = message;
-      document.body.appendChild(errorEl);
+      document.body.prepend(errorEl);
+      return errorEl;
     }
   }

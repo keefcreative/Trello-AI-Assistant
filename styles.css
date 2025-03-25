@@ -12,6 +12,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.5;
+  background-color: white;
 }
 
 .modal-container {
@@ -34,6 +35,7 @@ body {
 .modal-header h2 {
   margin: 0;
   font-size: 20px;
+  color: var(--primary-color);
 }
 
 .close-button {
@@ -45,9 +47,14 @@ body {
   padding: 4px 8px;
 }
 
+.close-button:hover {
+  color: var(--primary-color);
+}
+
 .modal-content {
   flex: 1;
   position: relative;
+  padding: 8px 0;
 }
 
 .loading-indicator {
@@ -56,6 +63,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 40px 0;
+  color: #5e6c84;
 }
 
 .spinner {
@@ -83,8 +91,24 @@ body {
 
 .error-message {
   color: var(--error-color);
-  padding: 8px;
+  padding: 12px;
+  margin: 8px 0;
   background-color: rgba(235, 90, 70, 0.1);
   border-radius: 3px;
-  margin: 8px 0;
+  border-left: 3px solid var(--error-color);
+}
+
+.card-info, .board-info {
+  padding: 8px;
+}
+
+.placeholder-ui {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: var(--background-color);
+  border-radius: 3px;
+}
+
+.placeholder-ui ul {
+  padding-left: 20px;
 }
