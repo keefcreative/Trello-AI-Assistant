@@ -1,3 +1,5 @@
+const Promise = window.TrelloPowerUp.Promise;
+
 window.TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
@@ -5,7 +7,7 @@ window.TrelloPowerUp.initialize({
       text: 'AI Assistant',
       callback: function(t){
         return t.modal({
-          url: './index.html',
+          url: t.signUrl('./index.html'),
           height: 500,
           title: 'AI Assistant'
         });
@@ -18,7 +20,7 @@ window.TrelloPowerUp.initialize({
       text: 'AI Assistant',
       callback: function(t){
         return t.modal({
-          url: './board-modal.html',
+          url: t.signUrl('./board-modal.html'),
           height: 500,
           title: 'AI Assistant Board Tools'
         });
