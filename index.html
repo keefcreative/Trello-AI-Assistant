@@ -1,42 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Card AI Assistant</title>
-  <script src="https://p.trellocdn.com/power-up.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    // Global error handler
-    window.addEventListener('error', function(e) {
-      console.error('Global error:', e.error);
-      const errorDisplay = document.createElement('div');
-      errorDisplay.className = 'global-error';
-      errorDisplay.textContent = 'An error occurred. Please try again.';
-      document.body.prepend(errorDisplay);
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Base Connector</title>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
 </head>
 <body>
-  <div class="modal-container">
-    <header class="modal-header">
-      <h2>Card AI Assistant</h2>
-      <button class="close-button" aria-label="Close modal">×</button>
-    </header>
-    
-    <main class="modal-content" id="card-modal-content">
-      <div class="loading-indicator">
-        <div class="spinner"></div>
-        <p>Loading card information...</p>
-      </div>
-    </main>
-    
-    <footer class="modal-footer">
-      <p class="context-info"></p>
-    </footer>
-  </div>
-  
-  <script src="modal-utils.js"></script>
-  <script src="card-modal.js"></script>
+    <p>AI Assistant Power-Up connector iframe.</p>
+    <p>This iframe is used by Trello to initialize the Power-Up.</p>
+    <script>
+        console.log("Simple AI Button: Base connector iframe (index.html) loaded.");
+        // No need to initialize anything here usually
+    </script>
 </body>
 </html>
